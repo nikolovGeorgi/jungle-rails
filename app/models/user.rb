@@ -15,5 +15,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password_digest, presence: true, length: {minimum: 6, maximum: 88}
 
+  #test user -> email: gogo@yahoo.com -> pass: foo
   # user = User.find_by(email)
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'products#index'
+  get '/signup', to: 'users#new'
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: [:create, :show]
-  resources :users, only: [:index, :create, :new]
+  resources :users#, only: [:index, :create, :new]
 
   namespace :admin do
     root to: 'dashboard#show'
