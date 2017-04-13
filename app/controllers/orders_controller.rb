@@ -10,7 +10,8 @@ class OrdersController < ApplicationController
 
     if order.valid?
       empty_cart!
-      redirect_to order, notice: 'Your Order has been placed.'
+      redirect_to order
+      flash[:success] = "Successful Order # "+@order.id+"!"
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end
@@ -30,7 +31,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_total, # in cents
-      description: "Khurram Virani's Jungle Order",
+      description: "Georgi Nikolov's Jungle Order",
       currency:    'cad'
     )
   end

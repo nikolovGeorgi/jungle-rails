@@ -6,5 +6,5 @@ class Order < ActiveRecord::Base
   monetize :total_cents, numericality: true
 
   validates :stripe_charge_id, presence: true
-
+  validates :total_cents, presence: true, numericality: {greater_than: 0}
 end
