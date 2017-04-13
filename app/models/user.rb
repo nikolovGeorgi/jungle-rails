@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: {minimum: 6, maximum: 88}
 
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
   #test user -> email: gogo@yahoo.com -> pass: foo
   # user = User.find_by(email)
 end
