@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -26,9 +27,11 @@
           </ul>
         </li>
         <li>
-          <% if @user.present? %>
-            <%= gravatar_for @user %>
-            <%= @user.email %>
+          <% unless current_page?(signup_path) %>
+            <% if @user.present? %>
+              <%= gravatar_for @user %>
+              <%= @user.email %>
+            <% end %>
           <% end %>
         </li>
       </ul>
