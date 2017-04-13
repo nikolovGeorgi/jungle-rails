@@ -43,6 +43,6 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
-  config.use_ssl = true
-  config.ssl_port = 3001
+  # config.use_ssl = true
+  # config.ssl_port = 3001
 end
