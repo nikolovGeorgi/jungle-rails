@@ -20,6 +20,17 @@ class User < ActiveRecord::Base
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
-  #test user -> email: gogo@yahoo.com -> pass: foo
-  # user = User.find_by(email)
+
+  def authenticate_with_credentials(email, password)
+    email = email.strip.downcase unless email.nil?
+    password = password.strip unless password.nil?
+    user = User.find_by_email(email)
+
+    if user && user.authenticate(password)
+      # returns instance of user if authenticated
+      user
+    else
+      false
+    end
+  end
 end

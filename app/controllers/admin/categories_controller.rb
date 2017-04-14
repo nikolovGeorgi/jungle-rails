@@ -1,7 +1,9 @@
 class Admin::CategoriesController < ApplicationController
 
+  before_action :authenticate
+
   def index
-    @category = Category.order(id: :desc).all
+    @categories = Category.order(id: :desc).all
   end
 
   def new
@@ -16,6 +18,12 @@ class Admin::CategoriesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @category = Category.find params[:id]
+    @category.destroy
+    redirect_to [:admin, :categories], notice: 'Category deleted!'
   end
 
   private
