@@ -10,8 +10,11 @@ class OrdersController < ApplicationController
 
     if order.valid?
       empty_cart!
+      if current_user
+        UserMailer.order_email(current_user, order).deliver_now
+      end
       redirect_to order
-      flash[:success] = "Successful Order # "+@order.id+"!"
+      flash[:success] = "Successful Order # " + order.id.to_s + "!"
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end
