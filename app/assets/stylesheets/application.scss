@@ -1,4 +1,5 @@
 // Vendor
+@import "custom";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
@@ -7,6 +8,7 @@
 @import "products";
 @import "user_helper";
 @import "error_messages";
+@import "review";
 // Global
 
 body {

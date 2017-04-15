@@ -21,6 +21,24 @@ end
 
 # Let's do this ...
 
+User.destroy_all
+
+user1 = User.create!({
+  email: 'gnikolov@sfu.ca',
+  first_name: 'Georgi',
+  last_name: 'Nikolov',
+  password: 'test123'
+})
+
+user2 = User.create!({
+  email: 'jungle@book.com',
+  first_name: 'Test',
+  last_name: 'Jungle',
+  password: 'junglebook'
+})
+
+puts "Creating Users is now DONE!"
+
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
@@ -35,7 +53,7 @@ puts "Re-creating Products ..."
 
 Product.destroy_all
 
-cat1.products.create!({
+prod1 = cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel1.jpg'),
@@ -84,7 +102,7 @@ cat1.products.create!({
 })
 
 
-cat2.products.create!({
+prod2 = cat2.products.create!({
   name:  'Modern Skateboards',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('electronics1.jpg'),
@@ -133,4 +151,18 @@ cat3.products.create!({
 })
 
 
-puts "DONE!"
+puts "Creating Products is now DONE!"
+
+rev1 = prod1.reviews.create!({
+  user: user1,
+  description: 'What is the purpose of life? Have free time and enjoy vitamin D!',
+  rating: 5
+})
+
+rev2 = prod1.reviews.create!({
+  user: user2,
+  description: 'Why did I want to buy this without any coupons is beyong me!.',
+  rating: 3
+})
+
+puts "Creating Reviews is now DONE!"

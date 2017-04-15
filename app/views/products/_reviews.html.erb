@@ -1,0 +1,50 @@
+<div class="row">
+  <h1>Reviews:</h1>
+</div>
+
+<% if @reviews.empty? %>
+  <div class="row">
+    <h3>The more reviews you leave us the better!</h3>
+    <br>
+  </div>
+<% end %>
+
+<% if logged_in? %>
+  <div class="row">
+    <%= form_for [@product, @review]  do |f| %>
+      <form>
+        <div class="form-group">
+          <label for="review-text">Your Review:</label>
+          <%= f.text_area :description, class: 'review-text form-control', id:'review-text', rows:'3', placeholder:"Would you like to review this item?" %>
+        </div>
+        <div class="form-group">
+          <%= f.select(:rating, [[1],[2],[3],[4],[5]], {}, {:class => 'review-select form-control'})%>
+          <br>
+          <%= f.submit "Submit Review", class: 'submit-review btn btn-info' %>
+        </div>
+      </form>
+    <%  end %>
+  </div>
+<% end %>
+
+<% @reviews.each do |review| %>
+  <div class="row">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+          <h4 ><%= gravatar_for review.user %>  <%= review.user.first_name %> <small>said:</small></h4>
+      </div>
+      <div class="panel-body">
+        <blockquote> <%= review.description %></blockquote>
+      </div>
+      <div class="panel-footer">
+        <% if current_user && current_user.first_name == review.user.first_name %>
+          <%= link_to "Delete Review", review_path(review), class: 'btn btn-sm btn-danger', method: :delete %>
+        <% end %>
+        <h5 class="review-footer-rating">Rating: <%= review.rating %></h5>
+        <h5 class="review-footer-date">Created On: <%= review.user.created_at.strftime('%d/%m/%Y') %></h5>
+      </div>
+
+    </div>
+  </div>
+<% end %>
