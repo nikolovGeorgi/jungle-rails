@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+
   default from: 'no-reply@jungle.com'
 
   def welcome_email(user)
@@ -12,4 +13,5 @@ class UserMailer < ApplicationMailer
     mail(to: @order.email, subject: "Order # #{@order.id}")
     UserMailer.order_email(User, Order.includes(line_items: :product).first)
   end
+
 end

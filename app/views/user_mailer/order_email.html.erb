@@ -10,27 +10,15 @@
   <h3> Here's what you ordered:</h3><br>
   <table>
     <tr>
-      <th>
-        Product
-      </th>
-      <th>
-        Quantity
-      </th>
-      <th>
-        Price
-      </th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
     </tr>
     <% @order.line_items.each do |line_item| %>
       <tr>
-        <td>
-          <%= line_item.product.name %>
-        </td>
-        <td>
-          <%= line_item.quantity %>
-        </td>
-        <td>
-          <%= number_to_currency(line_item.product.price.round(2)) %>
-        </td>
+        <td><%= line_item.product.name %></td>
+        <td><%= line_item.quantity %></td>
+        <td><%= number_to_currency(line_item.product.price.round(2)) %></td>
       </tr>
       <% end %>
         <tr>
