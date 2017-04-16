@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
         UserMailer.order_email(current_user, order).deliver_now
       end
       redirect_to order
-      flash[:success] = "Successful Order # " + order.id.to_s + "!"
+      if current_user
+        flash[:success] = "Successful Order # " + order.id.to_s + "!"
+      end
     else
       redirect_to cart_path, error: order.errors.full_messages.first
     end

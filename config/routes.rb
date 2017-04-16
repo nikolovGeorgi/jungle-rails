@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: [:create, :show]
-  resources :users#, only: [:index, :create, :new]
+  resources :users, except: [:edit, :update, :destroy]
 
   namespace :admin do
     root to: 'dashboard#show'

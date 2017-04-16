@@ -22,6 +22,13 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dd>
+            <% if @product.reviewed? %>
+            <h6 class="text-left avarage-rating">Average Rating: <%= @product.average_rating.round(2) %></h6>
+            <% else %>
+            <h6 class="text-left avarage-rating">Not yet reviewed.</h6>
+            <% end %>
+          </dd>
         </dl>
       </div>
     </div>

@@ -29,13 +29,13 @@
           <%= line_item.quantity %>
         </td>
         <td>
-          <%= number_to_currency(line_item.product.price, precision: 2) %>
+          <%= number_to_currency(line_item.product.price.round(2)) %>
         </td>
       </tr>
       <% end %>
         <tr>
-          <td>Total:
-            <%= number_to_currency(@order.total_cents, :precision => 2) %>
+          <td>The Total amount you have spend on our website is:
+            <%= number_to_currency(@order.total_cents.round(2)) %>
           </td>
         </tr>
   </table>

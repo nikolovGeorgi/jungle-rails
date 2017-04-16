@@ -10,10 +10,4 @@ class ProductsController < ApplicationController
     @review = Review.new()
   end
 
- #  def destroy
- #   @product = Product.find params[:id]
- #   @product.destroy
- #   redirect_to [:admin, :products], notice: 'Deleted.'
- # end
-
 end

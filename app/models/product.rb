@@ -12,4 +12,12 @@ class Product < ActiveRecord::Base
   validates :quantity, presence: true
   validates :category, presence: true
 
+  def reviewed?
+    reviews.count > 0
+  end
+
+  def average_rating
+    reviews.inject(0) { |previous, reviews | reviews.rating + previous}.to_f / reviews.count
+  end
+
 end

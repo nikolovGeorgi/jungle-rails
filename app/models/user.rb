@@ -22,17 +22,4 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
-  def authenticate_with_credentials(email, password)
-    email = email.strip.downcase unless email.nil?
-    password = password.strip unless password.nil?
-    user = User.find_by_email(email)
-
-    if user && user.authenticate(password)
-      # returns instance of user if authenticated
-      user
-    else
-      false
-    end
-  end
-
 end

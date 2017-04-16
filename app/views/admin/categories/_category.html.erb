@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <h4><%= category.name %></h4>
+    <h4><%= link_to category.name, category_path(category.id) %></h4>
   </td>
   <td>
     <%= category.created_at %>

@@ -12,7 +12,8 @@ class ReviewsController < ApplicationController
     end
 
     if review.save
-      redirect_to "/products/#{params[:product_id]}", notice: 'Thank you!'
+      redirect_to "/products/#{params[:product_id]}"
+      flash[:success] = "Thank you for your Review!"
     else
       @product = Product.find(params[:product_id])
       @review = Review.new
@@ -21,9 +22,11 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @reviewed = Review.find params[:id]
-    @reviewed.destroy
-    redirect_to "/products/#{params[:product_id]}", notice: 'Review has been deleted!'
+    @review = Review.find params[:id]
+    @product = @review.product
+    @review.destroy
+    redirect_to "/products/#{@product.id}"
+    flash[:success] = "Your Review has been Deleted!"
   end
 
 end

@@ -1,11 +1,12 @@
 <section class="orders-show">
-  <!-- <%= flash.now[:success] = "Successful Order # #{@order.id}!" %> -->
 
+  <header class="page-header">
   <% if current_user %>
-    <header class="page-header">
-      <h2>Thank you for your purchase <%= @current_user.first_name %>!</h2>
-    </header>
+    <h2>Thank you for your purchase <%= @current_user.first_name %>!</h2>
+  <% else %>
+    <h2>Thank you for your purchase dear Guest!</h2>
   <% end %>
+</header>
 
   <div class="panel panel-default">
     <table class="table table-bordered table-responsive">
