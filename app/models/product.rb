@@ -12,6 +12,8 @@ class Product < ActiveRecord::Base
   validates :quantity, presence: true
   validates :category, presence: true
 
+  validate :no_price, if: :price
+
   def reviewed?
     reviews.count > 0
   end
@@ -20,4 +22,9 @@ class Product < ActiveRecord::Base
     reviews.inject(0) { |previous, reviews | reviews.rating + previous}.to_f / reviews.count
   end
 
+  private
+
+  def no_price
+    errors.add(:price, "Can't sell it if it's free!") if price > 0
+  end
 end
