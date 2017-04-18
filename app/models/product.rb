@@ -25,6 +25,6 @@ class Product < ActiveRecord::Base
   private
 
   def no_price
-    errors.add(:price, "Can't sell it if it's free!") if price > 0
+    errors.add(:price, "Can't sell it if it's free!") if price <= 0
   end
 end

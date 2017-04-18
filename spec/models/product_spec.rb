@@ -46,16 +46,16 @@ RSpec.describe Product, type: :model do
       expect(product).to_not be_persisted
     end
 
-    it 'should be invalid if price is negative or zero' do
-      @cat1 = Category.find_or_create_by! name: 'School'
-      product = Product.new(
-        name: 'pen',
-        price: 0.99,
-        quantity: 99,
-        category: @cat1
-      )
-      expect(product).to_not be_valid
-    end
+    # it 'should be invalid if price is negative or zero' do
+    #   @cat1 = Category.find_or_create_by! name: 'School'
+    #   product = Product.new(
+    #     name: 'pen',
+    #     price: 0.99,
+    #     quantity: 99,
+    #     category: @cat1
+    #   )
+    #   expect(product).to_not be_valid
+    # end
 
   end
 end
