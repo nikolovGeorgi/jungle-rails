@@ -17,7 +17,10 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 # require "letter_opener" if Rails.env.development?
 
-module Jungle
+# Heroku Setting up the Asset Pipeline
+# config.assets.initialize_on_precompile = false
+
+module Lycans
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
